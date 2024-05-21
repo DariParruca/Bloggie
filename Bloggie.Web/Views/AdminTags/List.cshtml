@@ -1,0 +1,93 @@
+﻿@model List<Bloggie.Web.Models.Domain.Tag>
+@{
+}
+
+@if (TempData["AddTag"] != null)
+{
+    <div id="successAlert" class="alert alert-success text-center" role="alert">
+        <div class="row align-items-center">
+            <div class="col">@TempData["AddTag"]</div>
+            <div class="col-auto">
+                <button type="button" class="btn-close" aria-label="Close" onclick="closeAlert()"></button>
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData["EditTag"] != null)
+{
+    <div id="successAlert" class="alert alert-success text-center" role="alert">
+        <div class="row align-items-center">
+            <div class="col">@TempData["EditTag"]</div>
+            <div class="col-auto">
+                <button type="button" class="btn-close" aria-label="Close" onclick="closeAlert()"></button>
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData["DeleteTag"] != null)
+{
+    <div id="successAlert" class="alert alert-success text-center" role="alert">
+        <div class="row align-items-center">
+            <div class="col">@TempData["DeleteTag"]</div>
+            <div class="col-auto">
+                <button type="button" class="btn-close" aria-label="Close" onclick="closeAlert()"></button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Show All Tags - Admin Functionality</h1>
+    </div>
+</div>
+
+
+<div class="container py-5">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>DisplayName</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                 @foreach (var tag in Model)
+                {
+                   <tr>
+                       <td>@tag.Id</td>
+                       <td>@tag.Name</td>
+                       <td>@tag.DisplayName</td>
+                       <td>
+                           <a asp-area="" asp-controller="AdminTags"
+                              asp-action="Edit"
+                              asp-route-id="@tag.Id">Edit</a>  
+                       </td>
+                   </tr>                 
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+     <p>No tags were found!</p>   
+    }
+
+</div>
+
+<script>
+    function closeAlert() {
+        document.getElementById("successAlert").style.display = "none";
+    }
+
+    // Hide the success alert after 3 seconds
+    window.setTimeout(function () {
+        document.getElementById("successAlert").style.display = "none";
+    }, 3000);
+</script>

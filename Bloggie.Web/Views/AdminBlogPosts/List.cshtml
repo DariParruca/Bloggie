@@ -1,0 +1,78 @@
+﻿@model List<Bloggie.Web.Models.Domain.BlogPost>
+@{
+}
+
+@if (TempData["PostAdded"] != null || TempData["EditPost"] != null || TempData["DeletePost"] != null)
+{
+    <div id="successAlert" class="alert alert-success text-center" role="alert">
+        <div class="row align-items-center">
+            <div class="col">@TempData["PostAdded"] @TempData["EditPost"] @TempData["DeletePost"]</div>
+            <div class="col-auto">
+                <button type="button" class="btn-close" aria-label="Close" onclick="closeAlert()"></button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1 class="h3 fw-bold text-black">All Blog Posts - Admin Functionality</h1>
+    </div>
+</div>
+
+<div class="container py-4">
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Heading</th>
+                        <th scope="col">Tags</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var blogPost in Model)
+                    {
+                        <tr>
+                            <td>@blogPost.Id</td>
+                            <td>@blogPost.Heading</td>
+                            <td>
+                                @foreach (var tag in blogPost.Tags)
+                                {
+                                    <span class="badge bg-secondary me-1">@tag.Name</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-area=""
+                                   asp-controller="AdminBlogPosts"
+                                   asp-action="Edit"
+                                   asp-route-id="@blogPost.Id"
+                                   class="btn btn-sm btn-primary">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p class="text-muted text-center">No Blog Posts Found!</p>
+    }
+</div>
+
+<script>
+    function closeAlert() {
+        document.getElementById("successAlert").style.display = "none";
+    }
+
+    // Hide the success alert after 3 seconds
+    window.setTimeout(function () {
+        document.getElementById("successAlert").style.display = "none";
+    }, 3000);
+</script>

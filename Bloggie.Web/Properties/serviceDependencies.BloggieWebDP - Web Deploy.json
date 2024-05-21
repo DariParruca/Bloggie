@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/BloggieWebDP/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsBloggieDbConnectionStri_056B79CA3B",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/dari-bloggiedb/databases/Bloggie.Web_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:BloggieDbConnectionString",
+      "dynamicId": null
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/BloggieWebDP/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsBloggieAuthDbConnection_D2CCBA8264",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/dari-bloggiedb/databases/dari-bloggieauthdb",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:BloggieAuthDbConnectionString",
+      "dynamicId": null
+    }
+  }
+}
